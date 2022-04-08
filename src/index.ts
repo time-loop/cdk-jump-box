@@ -1,7 +1,6 @@
 import { aws_autoscaling, aws_ec2, aws_iam, aws_kms, Duration } from 'aws-cdk-lib';
 import { KeyPair } from 'cdk-ec2-key-pair';
 import { Construct } from 'constructs';
-import 'path';
 import { Namer } from 'multi-convention-namer';
 
 export interface JumpBoxProps {
@@ -9,6 +8,10 @@ export interface JumpBoxProps {
    * @default aws_ec2.InstanceType.of(aws_ec2.InstanceClass.T4A,aws_ec2.InstanceSize.NANO)
    */
   readonly instanceType?: aws_ec2.InstanceType;
+  /**
+   * @default  aws_ec2.MachineImage.latestAmazonLinux({ generation: aws_ec2.AmazonLinuxGeneration.AMAZON_LINUX_2, edition: aws_ec2.AmazonLinuxEdition.STANDARD, cpuType: aws_ec2.AmazonLinuxCpuType.ARM_64 })
+   */
+  readonly machineImage?: aws_ec2.IMachineImage;
   /**
    * You must provide either a keypair or a kmsKey.
    * You must not provide both.
@@ -63,7 +66,15 @@ export class JumpBox extends Construct {
     super(scope, id.pascal);
 
     const instanceType =
-      props.instanceType ?? aws_ec2.InstanceType.of(aws_ec2.InstanceClass.T3A, aws_ec2.InstanceSize.NANO);
+      props.instanceType ?? aws_ec2.InstanceType.of(aws_ec2.InstanceClass.T4G, aws_ec2.InstanceSize.NANO);
+
+    const machineImage =
+      props.machineImage ??
+      aws_ec2.MachineImage.latestAmazonLinux({
+        generation: aws_ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
+        edition: aws_ec2.AmazonLinuxEdition.STANDARD,
+        cpuType: aws_ec2.AmazonLinuxCpuType.ARM_64,
+      });
 
     if (props.kmsKey) {
       if (props.keyPair) throw new Error('You must not provide both a kmsKey and a keyPair');
@@ -97,7 +108,7 @@ export class JumpBox extends Construct {
 
       instanceType,
       keyName: this.keyPair.keyPairName,
-      machineImage: aws_ec2.MachineImage.latestAmazonLinux(), // { cpuType: aws_ec2.AmazonLinuxCpuType.ARM_64 } if using t4g
+      machineImage,
       minCapacity: 0,
       maxCapacity: 1,
       role: this.role,
