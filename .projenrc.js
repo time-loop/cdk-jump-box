@@ -22,13 +22,14 @@ const project = new clickupCdk.ClickUpCdkConstructLibrary({
   bundledDeps,
   deps: [...bundledDeps, ...peerDeps],
   devDeps: [
-    ...peerDeps.map((d) => {
-      const [name, version] = d.split('@');
-      return [name, version.substring(1)].join('@');
-    }),
+    // ...peerDeps.map((d) => {
+    //   const [name, version] = d.split('@');
+    //   return [name, version.substring(1)].join('@');
+    // }),
+    ...peerDeps,
     '@time-loop/clickup-projen',
   ],
-  peerDeps: [...peerDeps],
+  peerDeps,
 });
 
 project.synth();
