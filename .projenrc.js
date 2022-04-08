@@ -13,10 +13,7 @@ const peerDeps = [
 const project = new clickupCdk.ClickUpCdkConstructLibrary({
   name: '@time-loop/cdk-jump-box',
 
-  repositoryUrl: 'https://github.com/time-loop/cdk-jump-box.git',
-  authorName: '', // leverage default
-  authorAddress: '', // leverage default
-  cdkVersion: '2.20.0',
+  cdkVersion: '2.17.0',
   defaultReleaseBranch: 'main',
 
   bundledDeps,
@@ -30,6 +27,10 @@ const project = new clickupCdk.ClickUpCdkConstructLibrary({
     '@time-loop/clickup-projen',
   ],
   peerDeps,
+
+  repositoryUrl: 'https://github.com/time-loop/cdk-jump-box.git', // TODO: leverage default
+  authorName: '', // leverage default
+  authorAddress: '', // leverage default
 });
 
 project.synth();
