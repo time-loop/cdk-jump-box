@@ -1,15 +1,34 @@
 const { clickupCdk } = require('@time-loop/clickup-projen');
-const project = new clickupCdk.ClickUpCdkConstructLibrary({
-  author: 'Andrew Hammond',
-  authorAddress: 'andrew.george.hammond@gmail.com',
-  cdkVersion: '2.1.0',
-  defaultReleaseBranch: 'main',
-  devDeps: ['@time-loop/clickup-projen'],
-  name: 'cdk-jump-box',
-  repositoryUrl: 'https://github.com/andrew.george.hammond/cdk-jump-box.git',
 
-  // deps: [],                /* Runtime dependencies of this module. */
-  // description: undefined,  /* The description is just a string that helps people understand the purpose of the package. */
-  // packageName: undefined,  /* The "name" in package.json. */
+const bundledDeps = [
+  // 'cdk-iam-floyd@^0.300.0', // locked because of cdk-ec2-key-pair
+];
+const peerDeps = [
+  'cdk-ec2-key-pair@^3.2.0',
+  'cdk-iam-floyd@^0.300.0',
+  'constructs@^10.0.5',
+  'multi-convention-namer@^0.1.11',
+];
+
+const project = new clickupCdk.ClickUpCdkConstructLibrary({
+  name: '@time-loop/cdk-jump-box',
+
+  repositoryUrl: 'https://github.com/time-loop/cdk-jump-box.git',
+  authorName: '', // leverage default
+  authorAddress: '', // leverage default
+  cdkVersion: '2.20.0',
+  defaultReleaseBranch: 'main',
+
+  bundledDeps,
+  deps: [...bundledDeps, ...peerDeps],
+  devDeps: [
+    ...peerDeps.map((d) => {
+      const [name, version] = d.split('@');
+      return [name, version.substring(1)].join('@');
+    }),
+    '@time-loop/clickup-projen',
+  ],
+  peerDeps: [...peerDeps],
 });
+
 project.synth();
