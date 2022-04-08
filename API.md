@@ -2,41 +2,41 @@
 
 ## Constructs <a name="Constructs" id="Constructs"></a>
 
-### JumpBox <a name="JumpBox" id="cdk-jump-box.JumpBox"></a>
+### JumpBox <a name="JumpBox" id="@time-loop/cdk-jump-box.JumpBox"></a>
 
 JumpHost.
 
-#### Initializers <a name="Initializers" id="cdk-jump-box.JumpBox.Initializer"></a>
+#### Initializers <a name="Initializers" id="@time-loop/cdk-jump-box.JumpBox.Initializer"></a>
 
 ```typescript
-import { JumpBox } from 'cdk-jump-box'
+import { JumpBox } from '@time-loop/cdk-jump-box'
 
 new JumpBox(scope: Construct, id: Namer, props: JumpBoxProps)
 ```
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdk-jump-box.JumpBox.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
-| <code><a href="#cdk-jump-box.JumpBox.Initializer.parameter.id">id</a></code> | <code>multi-convention-namer.Namer</code> | *No description.* |
-| <code><a href="#cdk-jump-box.JumpBox.Initializer.parameter.props">props</a></code> | <code><a href="#cdk-jump-box.JumpBoxProps">JumpBoxProps</a></code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBox.Initializer.parameter.scope">scope</a></code> | <code>constructs.Construct</code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBox.Initializer.parameter.id">id</a></code> | <code>multi-convention-namer.Namer</code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBox.Initializer.parameter.props">props</a></code> | <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps">JumpBoxProps</a></code> | *No description.* |
 
 ---
 
-##### `scope`<sup>Required</sup> <a name="scope" id="cdk-jump-box.JumpBox.Initializer.parameter.scope"></a>
+##### `scope`<sup>Required</sup> <a name="scope" id="@time-loop/cdk-jump-box.JumpBox.Initializer.parameter.scope"></a>
 
 - *Type:* constructs.Construct
 
 ---
 
-##### `id`<sup>Required</sup> <a name="id" id="cdk-jump-box.JumpBox.Initializer.parameter.id"></a>
+##### `id`<sup>Required</sup> <a name="id" id="@time-loop/cdk-jump-box.JumpBox.Initializer.parameter.id"></a>
 
 - *Type:* multi-convention-namer.Namer
 
 ---
 
-##### `props`<sup>Required</sup> <a name="props" id="cdk-jump-box.JumpBox.Initializer.parameter.props"></a>
+##### `props`<sup>Required</sup> <a name="props" id="@time-loop/cdk-jump-box.JumpBox.Initializer.parameter.props"></a>
 
-- *Type:* <a href="#cdk-jump-box.JumpBoxProps">JumpBoxProps</a>
+- *Type:* <a href="#@time-loop/cdk-jump-box.JumpBoxProps">JumpBoxProps</a>
 
 ---
 
@@ -44,11 +44,11 @@ new JumpBox(scope: Construct, id: Namer, props: JumpBoxProps)
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#cdk-jump-box.JumpBox.toString">toString</a></code> | Returns a string representation of this construct. |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBox.toString">toString</a></code> | Returns a string representation of this construct. |
 
 ---
 
-##### `toString` <a name="toString" id="cdk-jump-box.JumpBox.toString"></a>
+##### `toString` <a name="toString" id="@time-loop/cdk-jump-box.JumpBox.toString"></a>
 
 ```typescript
 public toString(): string
@@ -60,14 +60,14 @@ Returns a string representation of this construct.
 
 | **Name** | **Description** |
 | --- | --- |
-| <code><a href="#cdk-jump-box.JumpBox.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBox.isConstruct">isConstruct</a></code> | Checks if `x` is a construct. |
 
 ---
 
-##### `isConstruct` <a name="isConstruct" id="cdk-jump-box.JumpBox.isConstruct"></a>
+##### `isConstruct` <a name="isConstruct" id="@time-loop/cdk-jump-box.JumpBox.isConstruct"></a>
 
 ```typescript
-import { JumpBox } from 'cdk-jump-box'
+import { JumpBox } from '@time-loop/cdk-jump-box'
 
 JumpBox.isConstruct(x: any)
 ```
@@ -88,7 +88,7 @@ library can be accidentally installed, and `instanceof` will behave
 unpredictably. It is safest to avoid using `instanceof`, and using
 this type-testing method instead.
 
-###### `x`<sup>Required</sup> <a name="x" id="cdk-jump-box.JumpBox.isConstruct.parameter.x"></a>
+###### `x`<sup>Required</sup> <a name="x" id="@time-loop/cdk-jump-box.JumpBox.isConstruct.parameter.x"></a>
 
 - *Type:* any
 
@@ -100,15 +100,15 @@ Any object.
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdk-jump-box.JumpBox.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
-| <code><a href="#cdk-jump-box.JumpBox.property.asg">asg</a></code> | <code>aws-cdk-lib.aws_autoscaling.IAutoScalingGroup</code> | *No description.* |
-| <code><a href="#cdk-jump-box.JumpBox.property.keyPair">keyPair</a></code> | <code>cdk-ec2-key-pair.KeyPair</code> | *No description.* |
-| <code><a href="#cdk-jump-box.JumpBox.property.role">role</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | *No description.* |
-| <code><a href="#cdk-jump-box.JumpBox.property.securityGroup">securityGroup</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup</code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBox.property.node">node</a></code> | <code>constructs.Node</code> | The tree node. |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBox.property.asg">asg</a></code> | <code>aws-cdk-lib.aws_autoscaling.IAutoScalingGroup</code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBox.property.keyPair">keyPair</a></code> | <code>cdk-ec2-key-pair.KeyPair</code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBox.property.role">role</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBox.property.securityGroup">securityGroup</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup</code> | *No description.* |
 
 ---
 
-##### `node`<sup>Required</sup> <a name="node" id="cdk-jump-box.JumpBox.property.node"></a>
+##### `node`<sup>Required</sup> <a name="node" id="@time-loop/cdk-jump-box.JumpBox.property.node"></a>
 
 ```typescript
 public readonly node: Node;
@@ -120,7 +120,7 @@ The tree node.
 
 ---
 
-##### `asg`<sup>Required</sup> <a name="asg" id="cdk-jump-box.JumpBox.property.asg"></a>
+##### `asg`<sup>Required</sup> <a name="asg" id="@time-loop/cdk-jump-box.JumpBox.property.asg"></a>
 
 ```typescript
 public readonly asg: IAutoScalingGroup;
@@ -130,7 +130,7 @@ public readonly asg: IAutoScalingGroup;
 
 ---
 
-##### `keyPair`<sup>Required</sup> <a name="keyPair" id="cdk-jump-box.JumpBox.property.keyPair"></a>
+##### `keyPair`<sup>Required</sup> <a name="keyPair" id="@time-loop/cdk-jump-box.JumpBox.property.keyPair"></a>
 
 ```typescript
 public readonly keyPair: KeyPair;
@@ -140,7 +140,7 @@ public readonly keyPair: KeyPair;
 
 ---
 
-##### `role`<sup>Required</sup> <a name="role" id="cdk-jump-box.JumpBox.property.role"></a>
+##### `role`<sup>Required</sup> <a name="role" id="@time-loop/cdk-jump-box.JumpBox.property.role"></a>
 
 ```typescript
 public readonly role: IRole;
@@ -150,7 +150,7 @@ public readonly role: IRole;
 
 ---
 
-##### `securityGroup`<sup>Required</sup> <a name="securityGroup" id="cdk-jump-box.JumpBox.property.securityGroup"></a>
+##### `securityGroup`<sup>Required</sup> <a name="securityGroup" id="@time-loop/cdk-jump-box.JumpBox.property.securityGroup"></a>
 
 ```typescript
 public readonly securityGroup: ISecurityGroup;
@@ -163,12 +163,12 @@ public readonly securityGroup: ISecurityGroup;
 
 ## Structs <a name="Structs" id="Structs"></a>
 
-### JumpBoxProps <a name="JumpBoxProps" id="cdk-jump-box.JumpBoxProps"></a>
+### JumpBoxProps <a name="JumpBoxProps" id="@time-loop/cdk-jump-box.JumpBoxProps"></a>
 
-#### Initializer <a name="Initializer" id="cdk-jump-box.JumpBoxProps.Initializer"></a>
+#### Initializer <a name="Initializer" id="@time-loop/cdk-jump-box.JumpBoxProps.Initializer"></a>
 
 ```typescript
-import { JumpBoxProps } from 'cdk-jump-box'
+import { JumpBoxProps } from '@time-loop/cdk-jump-box'
 
 const jumpBoxProps: JumpBoxProps = { ... }
 ```
@@ -177,18 +177,19 @@ const jumpBoxProps: JumpBoxProps = { ... }
 
 | **Name** | **Type** | **Description** |
 | --- | --- | --- |
-| <code><a href="#cdk-jump-box.JumpBoxProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | Which VPC should the jumpbox be in? |
-| <code><a href="#cdk-jump-box.JumpBoxProps.property.instanceType">instanceType</a></code> | <code>aws-cdk-lib.aws_ec2.InstanceType</code> | *No description.* |
-| <code><a href="#cdk-jump-box.JumpBoxProps.property.keyPair">keyPair</a></code> | <code>cdk-ec2-key-pair.KeyPair</code> | You must provide either a keypair or a kmsKey. |
-| <code><a href="#cdk-jump-box.JumpBoxProps.property.kmsKey">kmsKey</a></code> | <code>aws-cdk-lib.aws_kms.Key</code> | You must provide either a keypair or a kmsKey. |
-| <code><a href="#cdk-jump-box.JumpBoxProps.property.role">role</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | *No description.* |
-| <code><a href="#cdk-jump-box.JumpBoxProps.property.securityGroup">securityGroup</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup</code> | *No description.* |
-| <code><a href="#cdk-jump-box.JumpBoxProps.property.sshAccess">sshAccess</a></code> | <code>boolean</code> | *No description.* |
-| <code><a href="#cdk-jump-box.JumpBoxProps.property.vpcSubnets">vpcSubnets</a></code> | <code>aws-cdk-lib.aws_ec2.SubnetSelection</code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.vpc">vpc</a></code> | <code>aws-cdk-lib.aws_ec2.IVpc</code> | Which VPC should the jumpbox be in? |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.instanceType">instanceType</a></code> | <code>aws-cdk-lib.aws_ec2.InstanceType</code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.keyPair">keyPair</a></code> | <code>cdk-ec2-key-pair.KeyPair</code> | You must provide either a keypair or a kmsKey. |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.kmsKey">kmsKey</a></code> | <code>aws-cdk-lib.aws_kms.Key</code> | You must provide either a keypair or a kmsKey. |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.machineImage">machineImage</a></code> | <code>aws-cdk-lib.aws_ec2.IMachineImage</code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.role">role</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.securityGroup">securityGroup</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup</code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.sshAccess">sshAccess</a></code> | <code>boolean</code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.vpcSubnets">vpcSubnets</a></code> | <code>aws-cdk-lib.aws_ec2.SubnetSelection</code> | *No description.* |
 
 ---
 
-##### `vpc`<sup>Required</sup> <a name="vpc" id="cdk-jump-box.JumpBoxProps.property.vpc"></a>
+##### `vpc`<sup>Required</sup> <a name="vpc" id="@time-loop/cdk-jump-box.JumpBoxProps.property.vpc"></a>
 
 ```typescript
 public readonly vpc: IVpc;
@@ -200,7 +201,7 @@ Which VPC should the jumpbox be in?
 
 ---
 
-##### `instanceType`<sup>Optional</sup> <a name="instanceType" id="cdk-jump-box.JumpBoxProps.property.instanceType"></a>
+##### `instanceType`<sup>Optional</sup> <a name="instanceType" id="@time-loop/cdk-jump-box.JumpBoxProps.property.instanceType"></a>
 
 ```typescript
 public readonly instanceType: InstanceType;
@@ -211,7 +212,7 @@ public readonly instanceType: InstanceType;
 
 ---
 
-##### `keyPair`<sup>Optional</sup> <a name="keyPair" id="cdk-jump-box.JumpBoxProps.property.keyPair"></a>
+##### `keyPair`<sup>Optional</sup> <a name="keyPair" id="@time-loop/cdk-jump-box.JumpBoxProps.property.keyPair"></a>
 
 ```typescript
 public readonly keyPair: KeyPair;
@@ -226,7 +227,7 @@ If a keyPair is provided, it will simply be used.
 
 ---
 
-##### `kmsKey`<sup>Optional</sup> <a name="kmsKey" id="cdk-jump-box.JumpBoxProps.property.kmsKey"></a>
+##### `kmsKey`<sup>Optional</sup> <a name="kmsKey" id="@time-loop/cdk-jump-box.JumpBoxProps.property.kmsKey"></a>
 
 ```typescript
 public readonly kmsKey: Key;
@@ -248,7 +249,18 @@ It makes sense to require re-using the key associated with the resource.
 
 ---
 
-##### `role`<sup>Optional</sup> <a name="role" id="cdk-jump-box.JumpBoxProps.property.role"></a>
+##### `machineImage`<sup>Optional</sup> <a name="machineImage" id="@time-loop/cdk-jump-box.JumpBoxProps.property.machineImage"></a>
+
+```typescript
+public readonly machineImage: IMachineImage;
+```
+
+- *Type:* aws-cdk-lib.aws_ec2.IMachineImage
+- *Default:* aws_ec2.MachineImage.latestAmazonLinux({ generation: aws_ec2.AmazonLinuxGeneration.AMAZON_LINUX_2, edition: aws_ec2.AmazonLinuxEdition.STANDARD, cpuType: aws_ec2.AmazonLinuxCpuType.ARM_64 })
+
+---
+
+##### `role`<sup>Optional</sup> <a name="role" id="@time-loop/cdk-jump-box.JumpBoxProps.property.role"></a>
 
 ```typescript
 public readonly role: IRole;
@@ -259,7 +271,7 @@ public readonly role: IRole;
 
 ---
 
-##### `securityGroup`<sup>Optional</sup> <a name="securityGroup" id="cdk-jump-box.JumpBoxProps.property.securityGroup"></a>
+##### `securityGroup`<sup>Optional</sup> <a name="securityGroup" id="@time-loop/cdk-jump-box.JumpBoxProps.property.securityGroup"></a>
 
 ```typescript
 public readonly securityGroup: ISecurityGroup;
@@ -270,7 +282,7 @@ public readonly securityGroup: ISecurityGroup;
 
 ---
 
-##### `sshAccess`<sup>Optional</sup> <a name="sshAccess" id="cdk-jump-box.JumpBoxProps.property.sshAccess"></a>
+##### `sshAccess`<sup>Optional</sup> <a name="sshAccess" id="@time-loop/cdk-jump-box.JumpBoxProps.property.sshAccess"></a>
 
 ```typescript
 public readonly sshAccess: boolean;
@@ -281,7 +293,7 @@ public readonly sshAccess: boolean;
 
 ---
 
-##### `vpcSubnets`<sup>Optional</sup> <a name="vpcSubnets" id="cdk-jump-box.JumpBoxProps.property.vpcSubnets"></a>
+##### `vpcSubnets`<sup>Optional</sup> <a name="vpcSubnets" id="@time-loop/cdk-jump-box.JumpBoxProps.property.vpcSubnets"></a>
 
 ```typescript
 public readonly vpcSubnets: SubnetSelection;
