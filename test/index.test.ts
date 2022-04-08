@@ -112,13 +112,13 @@ describe('JumpBox', () => {
       const stack = new Stack(app, name.pascal);
       const kmsKey = new aws_kms.Key(stack, 'Key');
 
-      new JumpBox(stack, new Namer(['test']), {
-        keyPair: new KeyPair(stack, 'KeyPair', { kms: kmsKey, name: 'premadeKeyPair' }),
-        kmsKey,
-        vpc: new aws_ec2.Vpc(stack, 'Vpc'),
-      });
-      const annotations = assertions.Annotations.fromStack(stack);
-      annotations.hasError('*', assertions.Match.stringLikeRegexp('You must not provide both a kmsKey and a keyPair'));
+      expect(() => {
+        new JumpBox(stack, new Namer(['test']), {
+          keyPair: new KeyPair(stack, 'KeyPair', { kms: kmsKey, name: 'premadeKeyPair' }),
+          kmsKey,
+          vpc: new aws_ec2.Vpc(stack, 'Vpc'),
+        });
+      }).toThrow('You must not provide both a kmsKey and a keyPair');
     });
     it('errors when neither kmsKey nor keyPair', () => {
       const app = new App();
