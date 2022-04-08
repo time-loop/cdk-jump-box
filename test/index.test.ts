@@ -62,9 +62,9 @@ describe('JumpBox', () => {
         SecurityGroupIngress: assertions.Match.absent(),
       });
     });
-    it('instanceType is t3a.nano', () => {
+    it('instanceType is t4g.nano', () => {
       template.hasResourceProperties('AWS::AutoScaling::LaunchConfiguration', {
-        InstanceType: 't3a.nano',
+        InstanceType: 't4g.nano',
       });
     });
 
