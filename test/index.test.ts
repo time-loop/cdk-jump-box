@@ -1,8 +1,12 @@
-import { App, Stack, assertions, aws_kms, aws_ec2, aws_iam } from 'aws-cdk-lib';
+import { App, assertions, aws_kms, aws_ec2, aws_iam, CfnElement, Resource, Stack } from 'aws-cdk-lib';
 import { KeyPair } from 'cdk-ec2-key-pair';
 import { Namer } from 'multi-convention-namer';
 
 import { JumpBox } from '../src';
+
+export function getLogicalId(resource: Resource): string {
+  return resource.stack.getLogicalId(resource.node.defaultChild as CfnElement);
+}
 
 const name = new Namer(['test']);
 
@@ -53,18 +57,9 @@ describe('JumpBox', () => {
         ]),
       });
     });
-    it('created securityGroup allows SSH', () => {
+    it('sshAccess disabled by default', () => {
       template.hasResourceProperties('AWS::EC2::SecurityGroup', {
-        GroupDescription: 'SG for Test',
-        SecurityGroupIngress: [
-          {
-            CidrIp: '0.0.0.0/0',
-            Description: 'from 0.0.0.0/0:22',
-            FromPort: 22,
-            IpProtocol: 'tcp',
-            ToPort: 22,
-          },
-        ],
+        SecurityGroupIngress: assertions.Match.absent(),
       });
     });
     it('instanceType is t3a.nano', () => {
@@ -141,7 +136,7 @@ describe('JumpBox', () => {
       template.hasResourceProperties('AWS::IAM::InstanceProfile', {
         Roles: assertions.Match.arrayWith([
           {
-            Ref: assertions.Match.anyValue(), // TODO: figure out how to assert that it's a ref to `role`
+            Ref: getLogicalId(role),
           },
         ]),
       });
@@ -165,7 +160,7 @@ describe('JumpBox', () => {
         ],
       });
     });
-    it('skipSshAccess', () => {
+    it('sshAccess', () => {
       const app = new App();
       const stack = new Stack(app, name.pascal);
       new JumpBox(stack, new Namer(['test']), {
@@ -175,7 +170,16 @@ describe('JumpBox', () => {
       });
       const template = assertions.Template.fromStack(stack);
       template.hasResourceProperties('AWS::EC2::SecurityGroup', {
-        SecurityGroupIngress: assertions.Match.absent(),
+        GroupDescription: 'SG for Test',
+        SecurityGroupIngress: [
+          {
+            CidrIp: '0.0.0.0/0',
+            Description: 'from 0.0.0.0/0:22',
+            FromPort: 22,
+            IpProtocol: 'tcp',
+            ToPort: 22,
+          },
+        ],
       });
     });
     it('vpcSubnets', () => {
