@@ -140,7 +140,7 @@ describe('JumpBox', () => {
       new JumpBox(stack, new Namer(['test']), {
         kmsKey: new aws_kms.Key(stack, 'Key'),
         role,
-        vpc: aws_ec2.Vpc.fromLookup(stack, 'Vpc', {}),
+        vpc: new aws_ec2.Vpc(stack, 'Vpc'),
       });
       const template = assertions.Template.fromStack(stack);
       template.hasResourceProperties('AWS::IAM::InstanceProfile', {
@@ -197,12 +197,18 @@ describe('JumpBox', () => {
       const stack = new Stack(app, name.pascal);
       new JumpBox(stack, new Namer(['test']), {
         kmsKey: new aws_kms.Key(stack, 'Key'),
+        vpcSubnets: { subnetType: aws_ec2.SubnetType.PUBLIC },
         vpc: new aws_ec2.Vpc(stack, 'Vpc'),
-        vpcSubnets: { subnetType: aws_ec2.SubnetType.PRIVATE_ISOLATED },
       });
       const template = assertions.Template.fromStack(stack);
-      template.hasResourceProperties('AWS::AutoScaling::AutoScalingGroup', {
-        VPCZoneIdentifier: ['p-12345', 'p-67890'],
+      ['VpcPublicSubnet1Subnet5C2D37C4', 'VpcPublicSubnet2Subnet691E08A3'].forEach((subnet) => {
+        template.hasResourceProperties('AWS::AutoScaling::AutoScalingGroup', {
+          VPCZoneIdentifier: assertions.Match.arrayWith([
+            {
+              Ref: subnet,
+            },
+          ]),
+        });
       });
     });
   });
