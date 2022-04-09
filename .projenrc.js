@@ -15,6 +15,7 @@ const project = new clickupCdk.ClickUpCdkConstructLibrary({
 
   cdkVersion: '2.17.0',
   defaultReleaseBranch: 'main',
+  licensed: true,
 
   bundledDeps,
   deps: [...bundledDeps, ...peerDeps],
