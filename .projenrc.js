@@ -1,8 +1,5 @@
 const { clickupCdk } = require('@time-loop/clickup-projen');
 
-const bundledDeps = [
-  // 'cdk-iam-floyd@^0.300.0', // locked because of cdk-ec2-key-pair
-];
 const peerDeps = [
   'cdk-ec2-key-pair@^3.2.0',
   'cdk-iam-floyd@^0.300.0',
@@ -17,16 +14,8 @@ const project = new clickupCdk.ClickUpCdkConstructLibrary({
   defaultReleaseBranch: 'main',
   licensed: true,
 
-  bundledDeps,
-  deps: [...bundledDeps, ...peerDeps],
-  devDeps: [
-    // ...peerDeps.map((d) => {
-    //   const [name, version] = d.split('@');
-    //   return [name, version.substring(1)].join('@');
-    // }),
-    ...peerDeps,
-    '@time-loop/clickup-projen',
-  ],
+  deps: [...peerDeps],
+  devDeps: [...peerDeps, '@time-loop/clickup-projen'],
   peerDeps,
 
   repositoryUrl: 'https://github.com/time-loop/cdk-jump-box.git', // TODO: leverage default
