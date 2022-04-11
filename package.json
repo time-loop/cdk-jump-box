@@ -36,7 +36,7 @@
     "organization": true
   },
   "devDependencies": {
-    "@time-loop/clickup-projen": "^0.0.31",
+    "@time-loop/clickup-projen": "^0.0.32",
     "@types/jest": "^27.4.1",
     "@types/node": "^14",
     "@typescript-eslint/eslint-plugin": "^5",
@@ -56,9 +56,9 @@
     "jest-junit": "^13",
     "jsii": "^1.56.0",
     "jsii-diff": "^1.56.0",
-    "jsii-docgen": "^6.3.2",
+    "jsii-docgen": "^6.3.4",
     "jsii-pacmak": "^1.56.0",
-    "jsii-release": "^0.2.316",
+    "jsii-release": "^0.2.318",
     "json-schema": "^0.4.0",
     "multi-convention-namer": "^0.1.11",
     "npm-check-updates": "^12",
