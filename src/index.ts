@@ -81,6 +81,7 @@ export class JumpBox extends Construct {
       this.keyPair = new KeyPair(this, 'KeyPair', {
         name: id.pascal,
         kms: props.kmsKey,
+        resourcePrefix: 'x', // https://github.com/udondan/cdk-ec2-key-pair/issues/53
         storePublicKey: true,
       });
     } else {
