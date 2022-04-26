@@ -1,4 +1,4 @@
-import { aws_autoscaling, aws_ec2, aws_iam, aws_kms, Duration } from 'aws-cdk-lib';
+import { aws_autoscaling, aws_ec2, aws_iam, aws_kms, Duration, Names } from 'aws-cdk-lib';
 import { KeyPair } from 'cdk-ec2-key-pair';
 import { Construct } from 'constructs';
 import { Namer } from 'multi-convention-namer';
@@ -81,7 +81,11 @@ export class JumpBox extends Construct {
       this.keyPair = new KeyPair(this, 'KeyPair', {
         name: id.pascal,
         kms: props.kmsKey,
-        resourcePrefix: 'x', // https://github.com/udondan/cdk-ec2-key-pair/issues/53
+        // What I'd really like to do is remove the function name.
+        // It provides no value, but causes conflicts
+        // when you try to deploy more than one jumpbox in a given environment.
+        // https://github.com/udondan/cdk-ec2-key-pair/issues/53
+        resourcePrefix: Names.uniqueId(this).slice(-8),
         storePublicKey: true,
       });
     } else {
