@@ -79,6 +79,21 @@ describe('JumpBox', () => {
         InstanceType: 't4g.nano',
       });
     });
+    it.only('machineImage is AmazonLinux2022', () => {
+      // CDK finds the latest Amazon Linux 2022 AMI
+      // by referencing a well known SSM parameter.
+      const params = template.findParameters('*', {
+        Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>',
+        Default: Match.stringLikeRegexp('/aws/service/ami-amazon-linux-latest/.*'),
+      });
+      expect(Object.keys(params).length).toEqual(1);
+      const paramRef = Object.keys(params)[0];
+      template.hasResourceProperties('AWS::AutoScaling::LaunchConfiguration', {
+        ImageId: { Ref: paramRef},
+      });
+      // NOTE: this may evolve over time, but was still true as of aws-cdk-lib v2.75.1
+      expect(params[paramRef].Default).toMatch('/aws/service/ami-amazon-linux-latest/al2022-ami-kernel-5.10-arm64');
+    });
 
     // it('outputs ProxyEndpoint', () => {
     //   template.hasOutput('ProxyEndpoint', {});
