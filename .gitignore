@@ -4,7 +4,7 @@
 !/.projen/deps.json
 !/.projen/files.json
 !/.github/workflows/pull-request-lint.yml
-!/.github/workflows/stale.yml
+!/.github/workflows/auto-approve.yml
 !/package.json
 !/LICENSE
 !/.npmignore
@@ -32,6 +32,9 @@ jspm_packages/
 .yarn-integrity
 .cache
 /.npmrc
+.idea
+.yalc
+yalc.lock
 !/.projenrc.js
 /test-reports/
 junit.xml
@@ -54,4 +57,7 @@ junit.xml
 tsconfig.json
 !/API.md
 !/codecov.yml
-!/.github/workflows/upgrade-main.yml
+!/.nvmrc
+!/.github/workflows/renovate.yml
+!/.github/workflows/add-to-project.yml
+!/renovate.json5
