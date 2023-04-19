@@ -107,7 +107,7 @@
     },
     {
       "name": "multi-convention-namer",
-      "version": "^0.1.11",
+      "version": "^0.1.12",
       "type": "build"
     },
     {
@@ -163,7 +163,7 @@
     },
     {
       "name": "multi-convention-namer",
-      "version": "^0.1.11",
+      "version": "^0.1.12",
       "type": "peer"
     },
     {
@@ -183,7 +183,7 @@
     },
     {
       "name": "multi-convention-namer",
-      "version": "^0.1.11",
+      "version": "^0.1.12",
       "type": "runtime"
     }
   ],

@@ -60,7 +60,7 @@
     "jsii-pacmak": "^1.57.0",
     "jsii-release": "^0.2.332",
     "json-schema": "^0.4.0",
-    "multi-convention-namer": "^0.1.11",
+    "multi-convention-namer": "^0.1.12",
     "npm-check-updates": "^12",
     "prettier": "^2.6.2",
     "projen": "^0.54.11",
@@ -74,13 +74,13 @@
     "cdk-ec2-key-pair": "^3.2.0",
     "cdk-iam-floyd": "^0.300.0",
     "constructs": "^10.0.5",
-    "multi-convention-namer": "^0.1.11"
+    "multi-convention-namer": "^0.1.12"
   },
   "dependencies": {
     "cdk-ec2-key-pair": "^3.2.0",
     "cdk-iam-floyd": "^0.300.0",
     "constructs": "^10.0.5",
-    "multi-convention-namer": "^0.1.11"
+    "multi-convention-namer": "^0.1.12"
   },
   "keywords": [
     "cdk"

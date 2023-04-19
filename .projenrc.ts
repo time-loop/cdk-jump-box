@@ -4,7 +4,7 @@ const peerDeps = [
   'cdk-ec2-key-pair@^3.2.0',
   'cdk-iam-floyd@^0.300.0',
   'constructs@^10.0.5',
-  'multi-convention-namer@^0.1.11',
+  'multi-convention-namer@^0.1.12',
 ];
 
 const project = new clickupCdk.ClickUpCdkConstructLibrary({
