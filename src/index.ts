@@ -9,7 +9,9 @@ export interface JumpBoxProps {
    */
   readonly instanceType?: aws_ec2.InstanceType;
   /**
-   * @default  aws_ec2.MachineImage.latestAmazonLinux({ generation: aws_ec2.AmazonLinuxGeneration.AMAZON_LINUX_2, edition: aws_ec2.AmazonLinuxEdition.STANDARD, cpuType: aws_ec2.AmazonLinuxCpuType.ARM_64 })
+   * Default to latest Amazon Linux 2022 AMI for ARM64
+   *
+   * @default  MachineImage.latestAmazonLinux({generation:AmazonLinuxGeneration.AMAZON_LINUX_2022,edition:AmazonLinuxEdition.STANDARD,cpuType:AmazonLinuxCpuType.ARM_64})
    */
   readonly machineImage?: aws_ec2.IMachineImage;
   /**
@@ -71,7 +73,7 @@ export class JumpBox extends Construct {
     const machineImage =
       props.machineImage ??
       aws_ec2.MachineImage.latestAmazonLinux({
-        generation: aws_ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
+        generation: aws_ec2.AmazonLinuxGeneration.AMAZON_LINUX_2022,
         edition: aws_ec2.AmazonLinuxEdition.STANDARD,
         cpuType: aws_ec2.AmazonLinuxCpuType.ARM_64,
       });

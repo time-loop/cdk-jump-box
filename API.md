@@ -181,7 +181,7 @@ const jumpBoxProps: JumpBoxProps = { ... }
 | <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.instanceType">instanceType</a></code> | <code>aws-cdk-lib.aws_ec2.InstanceType</code> | *No description.* |
 | <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.keyPair">keyPair</a></code> | <code>cdk-ec2-key-pair.KeyPair</code> | You must provide either a keypair or a kmsKey. |
 | <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.kmsKey">kmsKey</a></code> | <code>aws-cdk-lib.aws_kms.Key</code> | You must provide either a keypair or a kmsKey. |
-| <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.machineImage">machineImage</a></code> | <code>aws-cdk-lib.aws_ec2.IMachineImage</code> | *No description.* |
+| <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.machineImage">machineImage</a></code> | <code>aws-cdk-lib.aws_ec2.IMachineImage</code> | Default to latest Amazon Linux 2022 AMI for ARM64. |
 | <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.role">role</a></code> | <code>aws-cdk-lib.aws_iam.IRole</code> | *No description.* |
 | <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.securityGroup">securityGroup</a></code> | <code>aws-cdk-lib.aws_ec2.ISecurityGroup</code> | *No description.* |
 | <code><a href="#@time-loop/cdk-jump-box.JumpBoxProps.property.sshAccess">sshAccess</a></code> | <code>boolean</code> | *No description.* |
@@ -256,7 +256,9 @@ public readonly machineImage: IMachineImage;
 ```
 
 - *Type:* aws-cdk-lib.aws_ec2.IMachineImage
-- *Default:* aws_ec2.MachineImage.latestAmazonLinux({ generation: aws_ec2.AmazonLinuxGeneration.AMAZON_LINUX_2, edition: aws_ec2.AmazonLinuxEdition.STANDARD, cpuType: aws_ec2.AmazonLinuxCpuType.ARM_64 })
+- *Default:* MachineImage.latestAmazonLinux({generation:AmazonLinuxGeneration.AMAZON_LINUX_2022,edition:AmazonLinuxEdition.STANDARD,cpuType:AmazonLinuxCpuType.ARM_64})
+
+Default to latest Amazon Linux 2022 AMI for ARM64.
 
 ---
 

@@ -1,4 +1,5 @@
-import { App, assertions, aws_kms, aws_ec2, aws_iam, CfnElement, Resource, Stack } from 'aws-cdk-lib';
+import { App, aws_kms, aws_ec2, aws_iam, CfnElement, Resource, Stack } from 'aws-cdk-lib';
+import { Match, Template } from 'aws-cdk-lib/assertions';
 import { KeyPair } from 'cdk-ec2-key-pair';
 import { Namer } from 'multi-convention-namer';
 
@@ -18,7 +19,8 @@ describe('JumpBox', () => {
       kmsKey: new aws_kms.Key(stack, 'Key'),
       vpc: new aws_ec2.Vpc(stack, 'Vpc'),
     });
-    const template = assertions.Template.fromStack(stack);
+    const template = Template.fromStack(stack);
+
     it('creates resources', () => {
       [
         'Custom::EC2-Key-Pair',
@@ -30,7 +32,7 @@ describe('JumpBox', () => {
     });
     it('created role makes sense', () => {
       template.hasResourceProperties('AWS::IAM::Role', {
-        AssumeRolePolicyDocument: assertions.Match.objectLike({
+        AssumeRolePolicyDocument: Match.objectLike({
           Statement: [
             {
               Action: 'sts:AssumeRole',
@@ -51,7 +53,7 @@ describe('JumpBox', () => {
             },
           ],
         }),
-        ManagedPolicyArns: assertions.Match.arrayWith([
+        ManagedPolicyArns: Match.arrayWith([
           {
             'Fn::Join': [
               '',
@@ -69,13 +71,28 @@ describe('JumpBox', () => {
     });
     it('sshAccess disabled by default', () => {
       template.hasResourceProperties('AWS::EC2::SecurityGroup', {
-        SecurityGroupIngress: assertions.Match.absent(),
+        SecurityGroupIngress: Match.absent(),
       });
     });
     it('instanceType is t4g.nano', () => {
       template.hasResourceProperties('AWS::AutoScaling::LaunchConfiguration', {
         InstanceType: 't4g.nano',
       });
+    });
+    it.only('machineImage is AmazonLinux2022', () => {
+      // CDK finds the latest Amazon Linux 2022 AMI
+      // by referencing a well known SSM parameter.
+      const params = template.findParameters('*', {
+        Type: 'AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>',
+        Default: Match.stringLikeRegexp('/aws/service/ami-amazon-linux-latest/.*'),
+      });
+      expect(Object.keys(params).length).toEqual(1);
+      const paramRef = Object.keys(params)[0];
+      template.hasResourceProperties('AWS::AutoScaling::LaunchConfiguration', {
+        ImageId: { Ref: paramRef },
+      });
+      // NOTE: this may evolve over time, but was still true as of aws-cdk-lib v2.75.1
+      expect(params[paramRef].Default).toMatch('/aws/service/ami-amazon-linux-latest/al2022-ami-kernel-5.10-arm64');
     });
 
     // it('outputs ProxyEndpoint', () => {
@@ -91,7 +108,7 @@ describe('JumpBox', () => {
         instanceType: aws_ec2.InstanceType.of(aws_ec2.InstanceClass.R6G, aws_ec2.InstanceSize.XLARGE24),
         vpc: new aws_ec2.Vpc(stack, 'Vpc'),
       });
-      const template = assertions.Template.fromStack(stack);
+      const template = Template.fromStack(stack);
       template.hasResourceProperties('AWS::AutoScaling::LaunchConfiguration', {
         InstanceType: 'r6g.24xlarge',
       });
@@ -104,7 +121,7 @@ describe('JumpBox', () => {
         keyPair: new KeyPair(stack, 'KeyPair', { kms: new aws_kms.Key(stack, 'Key'), name: 'premadeKeyPair' }),
         vpc: new aws_ec2.Vpc(stack, 'Vpc'),
       });
-      const template = assertions.Template.fromStack(stack);
+      const template = Template.fromStack(stack);
       template.hasResourceProperties('Custom::EC2-Key-Pair', { Name: 'premadeKeyPair' });
     });
     it('errors when both kmsKey and keyPair', () => {
@@ -142,9 +159,9 @@ describe('JumpBox', () => {
         role,
         vpc: new aws_ec2.Vpc(stack, 'Vpc'),
       });
-      const template = assertions.Template.fromStack(stack);
+      const template = Template.fromStack(stack);
       template.hasResourceProperties('AWS::IAM::InstanceProfile', {
-        Roles: assertions.Match.arrayWith([
+        Roles: Match.arrayWith([
           {
             Ref: getLogicalId(role),
           },
@@ -161,7 +178,7 @@ describe('JumpBox', () => {
         securityGroup,
         vpc,
       });
-      const template = assertions.Template.fromStack(stack);
+      const template = Template.fromStack(stack);
       template.hasResourceProperties('AWS::AutoScaling::LaunchConfiguration', {
         SecurityGroups: [
           {
@@ -178,7 +195,7 @@ describe('JumpBox', () => {
         sshAccess: true,
         vpc: new aws_ec2.Vpc(stack, 'Vpc'),
       });
-      const template = assertions.Template.fromStack(stack);
+      const template = Template.fromStack(stack);
       template.hasResourceProperties('AWS::EC2::SecurityGroup', {
         GroupDescription: 'SG for Test',
         SecurityGroupIngress: [
@@ -200,10 +217,10 @@ describe('JumpBox', () => {
         vpcSubnets: { subnetType: aws_ec2.SubnetType.PUBLIC },
         vpc: new aws_ec2.Vpc(stack, 'Vpc'),
       });
-      const template = assertions.Template.fromStack(stack);
+      const template = Template.fromStack(stack);
       ['VpcPublicSubnet1Subnet5C2D37C4', 'VpcPublicSubnet2Subnet691E08A3'].forEach((subnet) => {
         template.hasResourceProperties('AWS::AutoScaling::AutoScalingGroup', {
-          VPCZoneIdentifier: assertions.Match.arrayWith([
+          VPCZoneIdentifier: Match.arrayWith([
             {
               Ref: subnet,
             },
