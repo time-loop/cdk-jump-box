@@ -1,9 +1,9 @@
 import { App, aws_kms, aws_ec2, aws_iam, CfnElement, Resource, Stack } from 'aws-cdk-lib';
+import { Match, Template } from 'aws-cdk-lib/assertions';
 import { KeyPair } from 'cdk-ec2-key-pair';
 import { Namer } from 'multi-convention-namer';
 
 import { JumpBox } from '../src';
-import { Match, Template } from 'aws-cdk-lib/assertions';
 
 export function getLogicalId(resource: Resource): string {
   return resource.stack.getLogicalId(resource.node.defaultChild as CfnElement);
@@ -89,7 +89,7 @@ describe('JumpBox', () => {
       expect(Object.keys(params).length).toEqual(1);
       const paramRef = Object.keys(params)[0];
       template.hasResourceProperties('AWS::AutoScaling::LaunchConfiguration', {
-        ImageId: { Ref: paramRef},
+        ImageId: { Ref: paramRef },
       });
       // NOTE: this may evolve over time, but was still true as of aws-cdk-lib v2.75.1
       expect(params[paramRef].Default).toMatch('/aws/service/ami-amazon-linux-latest/al2022-ami-kernel-5.10-arm64');
