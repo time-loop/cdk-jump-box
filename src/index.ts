@@ -131,7 +131,7 @@ export class JumpBox extends Construct {
       instanceType,
       keyName: this.keyPair.keyPairName,
       machineImage,
-      desiredCapacity: props.desiredCapacity ?? undefined,
+      desiredCapacity: props.desiredCapacity,
       minCapacity: props.minCapacity ?? 0,
       maxCapacity: props.maxCapacity ?? 1,
       role: this.role,
