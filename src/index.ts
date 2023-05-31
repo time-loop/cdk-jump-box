@@ -54,15 +54,18 @@ export interface JumpBoxProps {
    */
   readonly vpcSubnets?: aws_ec2.SubnetSelection;
   /**
-   * @default undefined - the desired capacity of the auto scaling group
+   * the desired capacity of the auto scaling group
+   * @default undefined
    */
   readonly desiredCapacity?: number;
   /**
-   * @default 0 - the minimum capacity of the auto scaling group
+   * the minimum capacity of the auto scaling group
+   * @default 0
    */
   readonly minCapacity?: number;
   /**
-   * @default 1 - the maximum capacity of the auto scaling group
+   * the maximum capacity of the auto scaling group
+   * @default 1
    */
   readonly maxCapacity?: number;
 }
