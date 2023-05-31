@@ -211,6 +211,7 @@ public readonly desiredCapacity: number;
 ```
 
 - *Type:* number
+- *Default:* undefined - the desired capacity of the auto scaling group
 
 ---
 
@@ -282,6 +283,7 @@ public readonly maxCapacity: number;
 ```
 
 - *Type:* number
+- *Default:* 1 - the maximum capacity of the auto scaling group
 
 ---
 
@@ -292,6 +294,7 @@ public readonly minCapacity: number;
 ```
 
 - *Type:* number
+- *Default:* 0 - the minimum capacity of the auto scaling group
 
 ---
 
