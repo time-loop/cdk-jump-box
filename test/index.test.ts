@@ -79,7 +79,7 @@ describe('JumpBox', () => {
         InstanceType: 't4g.nano',
       });
     });
-    it.only('machineImage is AmazonLinux2022', () => {
+    it('machineImage is AmazonLinux2022', () => {
       // CDK finds the latest Amazon Linux 2022 AMI
       // by referencing a well known SSM parameter.
       const params = template.findParameters('*', {
@@ -98,6 +98,12 @@ describe('JumpBox', () => {
     // it('outputs ProxyEndpoint', () => {
     //   template.hasOutput('ProxyEndpoint', {});
     // });
+    it('AutoScalingGroup has min=1, max=1', () => {
+      template.hasResourceProperties('AWS::AutoScaling::AutoScalingGroup', {
+        MinSize: '0',
+        MaxSize: '1',
+      });
+    });
   });
   describe('options', () => {
     it('instanceType', () => {
@@ -226,6 +232,23 @@ describe('JumpBox', () => {
             },
           ]),
         });
+      });
+    });
+    it('autoScalingGroupProps', () => {
+      const app = new App();
+      const stack = new Stack(app, name.pascal);
+      new JumpBox(stack, new Namer(['test']), {
+        desiredCapacity: 9,
+        minCapacity: 8,
+        maxCapacity: 10,
+        kmsKey: new aws_kms.Key(stack, 'Key'),
+        vpc: new aws_ec2.Vpc(stack, 'Vpc'),
+      });
+      const template = Template.fromStack(stack);
+      template.hasResourceProperties('AWS::AutoScaling::AutoScalingGroup', {
+        DesiredCapacity: '9',
+        MinSize: '8',
+        MaxSize: '10',
       });
     });
   });

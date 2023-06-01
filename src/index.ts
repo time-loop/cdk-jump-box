@@ -53,6 +53,21 @@ export interface JumpBoxProps {
    * @default - default subnet selection
    */
   readonly vpcSubnets?: aws_ec2.SubnetSelection;
+  /**
+   * the desired capacity of the auto scaling group
+   * @default undefined
+   */
+  readonly desiredCapacity?: number;
+  /**
+   * the minimum capacity of the auto scaling group
+   * @default 0
+   */
+  readonly minCapacity?: number;
+  /**
+   * the maximum capacity of the auto scaling group
+   * @default 1
+   */
+  readonly maxCapacity?: number;
 }
 
 /**
@@ -116,8 +131,9 @@ export class JumpBox extends Construct {
       instanceType,
       keyName: this.keyPair.keyPairName,
       machineImage,
-      minCapacity: 0,
-      maxCapacity: 1,
+      desiredCapacity: props.desiredCapacity,
+      minCapacity: props.minCapacity ?? 0,
+      maxCapacity: props.maxCapacity ?? 1,
       role: this.role,
       securityGroup: this.securityGroup,
       signals: aws_autoscaling.Signals.waitForMinCapacity({ timeout: Duration.minutes(45) }),
