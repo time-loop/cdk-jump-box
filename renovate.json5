@@ -35,7 +35,6 @@
     }
   ],
   "ignoreDeps": [
-    "@types/jest",
     "@types/node",
     "@typescript-eslint/eslint-plugin",
     "@typescript-eslint/parser",
@@ -44,14 +43,12 @@
     "constructs",
     "eslint",
     "jest-junit",
-    "jest",
+    "jsii-rosetta",
+    "jsii",
     "multi-convention-namer",
     "npm-check-updates",
     "standard-version",
-    "ts-jest",
     "ts-node",
-    "@types/babel__traverse",
-    "@types/prettier",
     "aws-cdk-lib",
     "node"
   ],
