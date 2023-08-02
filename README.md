@@ -36,11 +36,8 @@ You only have to run these steps once, but you need to do it before you try conn
 1. [Install](https://docs.aws.amazon.com/systems-manager/latest/userguide/session-manager-working-with-install-plugin.html) the session manager plugin:
 
 ```bash
-curl "https://s3.amazonaws.com/session-manager-downloads/plugin/latest/mac/sessionmanager-bundle.zip" -o "sessionmanager-bundle.zip"
-unzip sessionmanager-bundle.zip
-
-# use python3 instead of python2 on your mac
-python3 sessionmanager-bundle/install
+# On a Mac, you may need to allow this in System Preferences -> Security
+brew install session-manager-plugin
 ```
 
 2. Make sure the following is in your `~/.ssh/config`:
@@ -49,6 +46,16 @@ python3 sessionmanager-bundle/install
 # SSH over Session Manager
 Host i-* mi-*
   ProxyCommand sh -c "aws ssm start-session --target %h --document-name AWS-StartSSHSession --parameters 'portNumber=%p'"
+  # Keep connection from closing on you due to agressive SSM timeouts, but close it when the other side stops caring
+  TCPKeepAlive yes
+  ServerAliveInterval 15
+  # Never Forward agents to remove machines you don't know
+  ForwardAgent no
+  # If you need to scp or portforward a lot, using a control channle will help.  Be sure to create the ControlPath first
+  # ControlMaster auto
+  # ControlPath ~/.ssh/control/%C
+  # ControlPersist 30
+
 ```
 
 3. Get the SSH key such as `~/.ssh/myAccount-MyStackJump.pem`:
