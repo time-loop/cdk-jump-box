@@ -88,7 +88,7 @@ export class JumpBox extends Construct {
     const machineImage =
       props.machineImage ??
       aws_ec2.MachineImage.latestAmazonLinux({
-        generation: aws_ec2.AmazonLinuxGeneration.AMAZON_LINUX_2022,
+        generation: aws_ec2.AmazonLinuxGeneration.AMAZON_LINUX_2,
         edition: aws_ec2.AmazonLinuxEdition.STANDARD,
         cpuType: aws_ec2.AmazonLinuxCpuType.ARM_64,
       });
