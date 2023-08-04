@@ -92,7 +92,7 @@ describe('JumpBox', () => {
         ImageId: { Ref: paramRef },
       });
       // NOTE: this may evolve over time, but was still true as of aws-cdk-lib v2.75.1
-      expect(params[paramRef].Default).toMatch('/aws/service/ami-amazon-linux-latest/al2022-ami-kernel-5.10-arm64');
+      expect(params[paramRef].Default).toMatch('/aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-arm64-gp2');
     });
 
     // it('outputs ProxyEndpoint', () => {
