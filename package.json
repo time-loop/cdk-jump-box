@@ -60,7 +60,7 @@
     "jsii-rosetta": "5.0.*",
     "multi-convention-namer": "^0.1.12",
     "npm-check-updates": "^16",
-    "prettier": "^2.8.8",
+    "prettier": "^3.0.3",
     "projen": "^0.71.161",
     "standard-version": "^9",
     "ts-jest": "^27",
