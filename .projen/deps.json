@@ -25,7 +25,7 @@
     },
     {
       "name": "cdk-ec2-key-pair",
-      "version": "^3.2.0",
+      "version": "3.3.1",
       "type": "build"
     },
     {
@@ -132,7 +132,7 @@
     },
     {
       "name": "cdk-ec2-key-pair",
-      "version": "^3.2.0",
+      "version": "3.3.1",
       "type": "peer"
     },
     {
@@ -152,7 +152,7 @@
     },
     {
       "name": "cdk-ec2-key-pair",
-      "version": "^3.2.0",
+      "version": "3.3.1",
       "type": "runtime"
     },
     {
