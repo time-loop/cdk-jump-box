@@ -50,7 +50,9 @@
     "standard-version",
     "ts-node",
     "aws-cdk-lib",
-    "node"
+    "node",
+    "@time-loop/clickup-projen",
+    "projen"
   ],
   "rangeStrategy": "bump",
   "prHourlyLimit": 0,
