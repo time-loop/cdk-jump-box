@@ -126,7 +126,8 @@
       "description": "Runs eslint against the codebase",
       "steps": [
         {
-          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern src test build-tools projenrc .projenrc.ts"
+          "exec": "eslint --ext .ts,.tsx --fix --no-error-on-unmatched-pattern $@ src test build-tools projenrc .projenrc.ts",
+          "receiveArgs": true
         }
       ]
     },
@@ -262,28 +263,13 @@
       },
       "steps": [
         {
-          "exec": "yarn upgrade npm-check-updates"
-        },
-        {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --filter='projen,@time-loop/clickup-projen'"
-        },
-        {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --filter='projen,@time-loop/clickup-projen'"
-        },
-        {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --filter='projen,@time-loop/clickup-projen'"
-        },
-        {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --filter='projen,@time-loop/clickup-projen'"
-        },
-        {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --filter='projen,@time-loop/clickup-projen'"
+          "exec": "npx npm-check-updates@16 --upgrade --target=latest --peer --dep=dev,peer,prod,optional --filter=projen,@time-loop/clickup-projen"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @time-loop/clickup-projen projen"
+          "exec": "yarn upgrade projen @time-loop/clickup-projen"
         },
         {
           "exec": "npx projen"
@@ -301,28 +287,13 @@
       },
       "steps": [
         {
-          "exec": "yarn upgrade npm-check-updates"
-        },
-        {
-          "exec": "npm-check-updates --dep dev --upgrade --target=minor --reject='aws-cdk-lib,jsii-rosetta,jsii'"
-        },
-        {
-          "exec": "npm-check-updates --dep bundle --upgrade --target=minor --reject='aws-cdk-lib,jsii-rosetta,jsii'"
-        },
-        {
-          "exec": "npm-check-updates --dep peer --upgrade --target=minor --reject='aws-cdk-lib,jsii-rosetta,jsii'"
-        },
-        {
-          "exec": "npm-check-updates --dep prod --upgrade --target=minor --reject='aws-cdk-lib,jsii-rosetta,jsii'"
-        },
-        {
-          "exec": "npm-check-updates --dep optional --upgrade --target=minor --reject='aws-cdk-lib,jsii-rosetta,jsii'"
+          "exec": "npx npm-check-updates@16 --upgrade --target=minor --peer --dep=dev,peer,prod,optional --filter=@time-loop/clickup-projen,@types/jest,@types/node,@typescript-eslint/eslint-plugin,@typescript-eslint/parser,cdk-ec2-key-pair,cdk-iam-floyd,esbuild,eslint-config-prettier,eslint-import-resolver-typescript,eslint-plugin-import,eslint-plugin-prettier,eslint,jest,jest-junit,jsii-diff,jsii-docgen,jsii-pacmak,jsii-release,multi-convention-namer,prettier,projen,standard-version,ts-jest,ts-node,aws-cdk-lib,constructs"
         },
         {
           "exec": "yarn install --check-files"
         },
         {
-          "exec": "yarn upgrade @time-loop/clickup-projen @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser aws-cdk-lib cdk-ec2-key-pair cdk-iam-floyd constructs esbuild eslint-config-prettier eslint-import-resolver-node eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-release jsii-rosetta jsii multi-convention-namer npm-check-updates prettier projen standard-version ts-jest ts-node typescript aws-cdk-lib cdk-ec2-key-pair cdk-iam-floyd constructs multi-convention-namer cdk-ec2-key-pair cdk-iam-floyd constructs multi-convention-namer"
+          "exec": "yarn upgrade @time-loop/clickup-projen @types/jest @types/node @typescript-eslint/eslint-plugin @typescript-eslint/parser cdk-ec2-key-pair cdk-iam-floyd esbuild eslint-config-prettier eslint-import-resolver-typescript eslint-plugin-import eslint-plugin-prettier eslint jest jest-junit jsii-diff jsii-docgen jsii-pacmak jsii-release multi-convention-namer prettier projen standard-version ts-jest ts-node aws-cdk-lib constructs"
         },
         {
           "exec": "npx projen"
