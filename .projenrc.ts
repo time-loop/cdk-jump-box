@@ -1,7 +1,8 @@
 import { clickupCdk } from '@time-loop/clickup-projen';
+import { javascript } from 'projen';
 
 const peerDeps = [
-  'cdk-ec2-key-pair@^3.2.0',
+  'cdk-ec2-key-pair@3.3.1',
   'cdk-iam-floyd@^0.300.0',
   'constructs@^10.0.5',
   'multi-convention-namer@^0.1.12',
@@ -22,7 +23,12 @@ const project = new clickupCdk.ClickUpCdkConstructLibrary({
   author: '', // leverage default
   authorAddress: '', // leverage default
 
+  packageManager: javascript.NodePackageManager.PNPM,
+  pnpmVersion: '9',
   projenrcTs: true,
 });
+
+// We don't have any bundledDeps?!? :)
+// project.npmrc.addConfig('node-linker', 'hoisted'); // PNPM support for bundledDeps https://pnpm.io/npmrc#node-linker
 
 project.synth();
