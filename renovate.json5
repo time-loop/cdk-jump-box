@@ -7,20 +7,18 @@
     "before 2am on Monday"
   ],
   "extends": [
-    "config:base",
+    "config:recommended",
     "group:recommended",
     "group:monorepos",
-    "github>whitesource/merge-confidence:beta"
+    "mergeConfidence:all-badges"
   ],
   "packageRules": [
     {
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch",
-      "matchPackagePatterns": [
-        "*"
-      ],
-      "excludePackagePatterns": [
-        "^@time-loop\\/clickup-projen"
+      "matchPackageNames": [
+        "*",
+        "!/^@time-loop\\/clickup-projen/"
       ],
       "matchUpdateTypes": [
         "minor",
@@ -37,14 +35,14 @@
       ]
     },
     {
-      "matchPackagePatterns": [
-        "^@time-loop\\/clickup-projen"
+      "matchPackageNames": [
+        "/^@time-loop\\/clickup-projen/"
       ],
       "allowedVersions": "!/^[0-9]+\\.[0-9]+\\.[0-9]+(\\.[0-9]+)?-(alpha|beta).*$/"
     },
     {
-      "matchPackagePrefixes": [
-        "@time-loop/"
+      "matchPackageNames": [
+        "@time-loop/{/,}**"
       ],
       "matchUpdateTypes": [
         "major"
@@ -54,6 +52,12 @@
         "Applying major version updates without understanding what they do has caused outages at ClickUp. Don't be that guy. Read the release notes. The release notes are in a link buried in the rollup below. Sorry, unfortunately Renovate does not offer a reasonable way to expose them here. If in doubt, escalate to CloudPlatform.",
         "CloudPlatform thanks you for being diligent with your library updates!"
       ]
+    },
+    {
+      "matchPackageNames": [
+        "@time-loop/{/,}**"
+      ],
+      "minimumReleaseAge": "0 days"
     }
   ],
   "ignoreDeps": [
@@ -75,11 +79,24 @@
     "constructs",
     "node",
     "@time-loop/clickup-projen",
-    "projen"
+    "pnpm",
+    "projen",
+    "hmarr/auto-approve-action",
+    "actions/checkout",
+    "actions/download-artifact",
+    "pnpm/action-setup",
+    "amannn/action-semantic-pull-request",
+    "actions/setup-node",
+    "codecov/codecov-action",
+    "actions/upload-artifact",
+    "Glennmen/datadog-event-action",
+    "rtCamp/action-slack-notify",
+    "peter-evans/create-pull-request"
   ],
   "rangeStrategy": "bump",
   "prHourlyLimit": 0,
   "prConcurrentLimit": 0,
   "automergeType": "pr",
-  "platformAutomerge": true
+  "platformAutomerge": true,
+  "minimumReleaseAge": "7 days"
 }

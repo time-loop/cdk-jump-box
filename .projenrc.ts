@@ -1,5 +1,4 @@
 import { clickupCdk } from '@time-loop/clickup-projen';
-import { javascript } from 'projen';
 
 const peerDeps = [
   'cdk-ec2-key-pair@3.3.1',
@@ -10,21 +9,16 @@ const peerDeps = [
 
 const project = new clickupCdk.ClickUpCdkConstructLibrary({
   name: '@time-loop/cdk-jump-box',
-
   cdkVersion: '2.17.0',
   defaultReleaseBranch: 'main',
   licensed: true,
-
   deps: [...peerDeps],
   devDeps: [...peerDeps, '@time-loop/clickup-projen'],
   peerDeps,
-
   repositoryUrl: 'https://github.com/time-loop/cdk-jump-box.git', // TODO: leverage default
   author: '', // leverage default
   authorAddress: '', // leverage default
 
-  packageManager: javascript.NodePackageManager.PNPM,
-  pnpmVersion: '9',
   projenrcTs: true,
 });
 
